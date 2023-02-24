@@ -1,0 +1,121 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://fonts/Brink - BR Cobane Bold.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/Brink - BR Cobane Light.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://LPANEL-EspStatus.tscn" type="PackedScene" id=3]
+[ext_resource path="res://LPANEL-CarStatus.tscn" type="PackedScene" id=4]
+[ext_resource path="res://RPANEL-BatteryVoltage.tscn" type="PackedScene" id=5]
+[ext_resource path="res://RPANEL-FuelCell.tscn" type="PackedScene" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 3 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="BGColorRect" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 60.0
+margin_top = 60.0
+margin_right = 1860.0
+margin_bottom = 1020.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_right = 1812.0
+margin_bottom = 960.0
+custom_constants/separation = 24
+
+[node name="LeftPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_right = 770.0
+margin_bottom = 960.0
+custom_constants/separation = 24
+
+[node name="TopRow" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftPanel"]
+margin_right = 770.0
+margin_bottom = 78.0
+alignment = 1
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/LeftPanel/TopRow"]
+margin_right = 770.0
+margin_bottom = 49.0
+theme = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Hydrogen Grand Prix Watchtower"
+
+[node name="Subtitle" type="Label" parent="MarginContainer/HBoxContainer/LeftPanel/TopRow"]
+margin_top = 53.0
+margin_right = 770.0
+margin_bottom = 78.0
+theme = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Supernova-HS 2023"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/LeftPanel"]
+margin_top = 102.0
+margin_right = 770.0
+margin_bottom = 960.0
+rect_min_size = Vector2( 770, 858 )
+scroll_horizontal_enabled = false
+
+[node name="MarginContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftPanel/ScrollContainer"]
+margin_right = 760.0
+margin_bottom = 348.0
+custom_constants/separation = 24
+
+[node name="ESPStatus" parent="MarginContainer/HBoxContainer/LeftPanel/ScrollContainer/MarginContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 760.0
+margin_bottom = 324.0
+rect_min_size = Vector2( 760, 324 )
+
+[node name="CarStatus" parent="MarginContainer/HBoxContainer/LeftPanel/ScrollContainer/MarginContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 348.0
+margin_right = 760.0
+margin_bottom = 348.0
+
+[node name="RightPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 794.0
+margin_right = 1812.0
+margin_bottom = 960.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/RightPanel"]
+margin_right = 1018.0
+margin_bottom = 960.0
+rect_min_size = Vector2( 1006, 960 )
+scroll_horizontal_enabled = false
+
+[node name="MarginContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightPanel/ScrollContainer"]
+margin_right = 1006.0
+margin_bottom = 1588.0
+custom_constants/separation = 24
+
+[node name="BatteryVoltageGraph" parent="MarginContainer/HBoxContainer/RightPanel/ScrollContainer/MarginContainer" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1006.0
+margin_bottom = 782.0
+
+[node name="FuelCellGraph" parent="MarginContainer/HBoxContainer/RightPanel/ScrollContainer/MarginContainer" instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 806.0
+margin_right = 1006.0
+margin_bottom = 1588.0

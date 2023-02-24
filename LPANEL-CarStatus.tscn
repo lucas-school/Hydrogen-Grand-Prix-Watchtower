@@ -1,0 +1,134 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://fonts/Brink - BR Cobane Bold.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/Brink - BR Cobane Light.otf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=5]
+size = 28
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=1]
+default_font = SubResource( 5 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 6 )
+
+[node name="Control" type="Control"]
+anchor_right = 0.396
+anchor_bottom = 0.833
+margin_right = -0.320007
+margin_bottom = -663.64
+
+[node name="BGColorRect" type="ColorRect" parent="."]
+margin_right = 760.0
+margin_bottom = 236.0
+color = Color( 0.94902, 0.94902, 0.94902, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 3.628
+margin_left = 60.0
+margin_top = 60.0
+margin_right = -60.0
+margin_bottom = -2504.16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 640.0
+margin_bottom = 116.0
+custom_constants/separation = 24
+
+[node name="CarStatus" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 640.0
+margin_bottom = 116.0
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/CarStatus"]
+margin_right = 640.0
+margin_bottom = 29.0
+theme = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Car Status"
+
+[node name="ConnectionBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CarStatus"]
+margin_top = 33.0
+margin_right = 640.0
+margin_bottom = 58.0
+
+[node name="Connection" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/ConnectionBox"]
+margin_right = 73.0
+margin_bottom = 25.0
+theme = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Status:"
+
+[node name="ConnectionStatus" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/ConnectionBox"]
+margin_left = 77.0
+margin_right = 264.0
+margin_bottom = 25.0
+theme = SubResource( 4 )
+custom_colors/font_color = Color( 0.211765, 0.760784, 0.105882, 1 )
+text = "Online, Hydrogen"
+
+[node name="RedLEDBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CarStatus"]
+margin_top = 62.0
+margin_right = 640.0
+margin_bottom = 87.0
+
+[node name="RedLED" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/RedLEDBox"]
+margin_right = 97.0
+margin_bottom = 25.0
+theme = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Red LED:"
+
+[node name="RedLEDStatus" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/RedLEDBox"]
+margin_left = 101.0
+margin_right = 172.0
+margin_bottom = 25.0
+theme = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 0.427451 )
+text = "Offline"
+
+[node name="GreenLEDBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CarStatus"]
+margin_top = 91.0
+margin_right = 640.0
+margin_bottom = 116.0
+
+[node name="GreenLED" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/GreenLEDBox"]
+margin_right = 122.0
+margin_bottom = 25.0
+theme = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Green LED:"
+
+[node name="GreenLEDStatus" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/GreenLEDBox"]
+margin_left = 126.0
+margin_right = 217.0
+margin_bottom = 25.0
+theme = SubResource( 4 )
+custom_colors/font_color = Color( 0.211765, 0.760784, 0.105882, 1 )
+text = "Showing"
+
+[node name="GreenLEDBox2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CarStatus"]
+visible = false
+margin_top = 120.0
+margin_right = 639.0
+margin_bottom = 145.0
+
+[node name="GreenLED" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/GreenLEDBox2"]
+margin_right = 122.0
+margin_bottom = 25.0
+theme = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Green LED:"
+
+[node name="GreenLEDStatus" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/GreenLEDBox2"]
+margin_left = 126.0
+margin_right = 217.0
+margin_bottom = 25.0
+theme = SubResource( 4 )
+custom_colors/font_color = Color( 0.211765, 0.760784, 0.105882, 1 )
+text = "Showing"

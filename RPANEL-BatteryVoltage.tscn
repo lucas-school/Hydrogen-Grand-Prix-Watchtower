@@ -1,0 +1,148 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://fonts/Brink - BR Cobane Bold.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://fonts/Brink - BR Cobane Light.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://BatteryVoltageLineGraph.tscn" type="PackedScene" id=3]
+
+[sub_resource type="DynamicFont" id=9]
+size = 28
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 9 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=5]
+default_font = SubResource( 3 )
+
+[node name="Control" type="Control"]
+anchor_right = 0.524
+anchor_bottom = 0.724
+margin_right = -0.0800781
+margin_bottom = 0.0799561
+rect_min_size = Vector2( 1006, 782 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1006.0
+margin_bottom = 782.0
+rect_pivot_offset = Vector2( -660, 35 )
+color = Color( 0.94902, 0.94902, 0.94902, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 3.628
+margin_left = 60.0
+margin_top = 60.0
+margin_right = -60.0
+margin_bottom = -3196.24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 886.0
+margin_bottom = 662.0
+custom_constants/separation = 24
+
+[node name="CarStatus" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 886.0
+margin_bottom = 662.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/CarStatus"]
+margin_right = 886.0
+margin_bottom = 600.0
+
+[node name="BatteryVoltageChart" parent="MarginContainer/VBoxContainer/CarStatus/MarginContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 886.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 886, 600 )
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/CarStatus"]
+margin_top = 604.0
+margin_right = 886.0
+margin_bottom = 633.0
+theme = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+
+[node name="BatteryVoltageBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CarStatus"]
+margin_top = 637.0
+margin_right = 886.0
+margin_bottom = 662.0
+
+[node name="BatteryVoltage" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/BatteryVoltageBox"]
+margin_right = 254.0
+margin_bottom = 25.0
+theme = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Recent Battery Voltage:"
+
+[node name="BatteryVoltageCurrent" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/BatteryVoltageBox"]
+margin_left = 258.0
+margin_right = 318.0
+margin_bottom = 25.0
+theme = SubResource( 5 )
+custom_colors/font_color = Color( 0.105882, 0.117647, 0.760784, 1 )
+text = "7.93V"
+
+[node name="RedLEDBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CarStatus"]
+visible = false
+margin_right = 886.0
+margin_bottom = 25.0
+
+[node name="RedLED" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/RedLEDBox"]
+margin_right = 97.0
+margin_bottom = 25.0
+theme = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Red LED:"
+
+[node name="RedLEDStatus" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/RedLEDBox"]
+margin_left = 101.0
+margin_right = 172.0
+margin_bottom = 25.0
+theme = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 0.427451 )
+text = "Offline"
+
+[node name="GreenLEDBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CarStatus"]
+visible = false
+margin_right = 886.0
+margin_bottom = 25.0
+
+[node name="GreenLED" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/GreenLEDBox"]
+margin_right = 122.0
+margin_bottom = 25.0
+theme = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Green LED:"
+
+[node name="GreenLEDStatus" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/GreenLEDBox"]
+margin_left = 126.0
+margin_right = 217.0
+margin_bottom = 25.0
+theme = SubResource( 5 )
+custom_colors/font_color = Color( 0.211765, 0.760784, 0.105882, 1 )
+text = "Showing"
+
+[node name="GreenLEDBox2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CarStatus"]
+visible = false
+margin_top = 120.0
+margin_right = 639.0
+margin_bottom = 145.0
+
+[node name="GreenLED" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/GreenLEDBox2"]
+margin_right = 122.0
+margin_bottom = 25.0
+theme = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Green LED:"
+
+[node name="GreenLEDStatus" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/GreenLEDBox2"]
+margin_left = 126.0
+margin_right = 217.0
+margin_bottom = 25.0
+theme = SubResource( 5 )
+custom_colors/font_color = Color( 0.211765, 0.760784, 0.105882, 1 )
+text = "Showing"
