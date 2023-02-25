@@ -146,14 +146,12 @@ margin_bottom = 60.0
 rect_min_size = Vector2( 490, 60 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ESP32Raw/MarginContainer/HBoxContainer/MarginContainer"]
-anchor_left = 0.073
-anchor_right = 0.119
-margin_right = 377.46
+margin_right = 490.0
 margin_bottom = 60.0
 
 [node name="RawData" type="Label" parent="MarginContainer/VBoxContainer/ESP32Raw/MarginContainer/HBoxContainer/MarginContainer/MarginContainer"]
 margin_top = 17.0
-margin_right = 400.0
+margin_right = 490.0
 margin_bottom = 42.0
 theme = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )

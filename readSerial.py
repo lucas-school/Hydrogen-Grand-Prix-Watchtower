@@ -83,9 +83,9 @@ class readSerial(Control):
 			serial_data_nodes = self.get_tree().get_nodes_in_group("serial_data")
 			for node in serial_data_nodes:
 				node.serial_data = ser_data.strip()
-				node.battery_voltage = ser_data_list[0]
-				node.red_led = ser_data_list[1]
-				node.green_led = ser_data_list[2]
+				node.battery_voltage = float(ser_data_list[0])
+				node.red_led = int(ser_data_list[1])
+				node.green_led = int(ser_data_list[2])
 				node.solenoid_time = ser_data_list[3]
 				node.time_last = int(time.time())
 
