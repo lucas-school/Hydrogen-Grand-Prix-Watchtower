@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://fonts/Brink - BR Cobane Bold.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://fonts/Brink - BR Cobane Light.otf" type="DynamicFontData" id=2]
@@ -6,8 +6,6 @@
 [ext_resource path="res://LPANEL-CarStatus.tscn" type="PackedScene" id=4]
 [ext_resource path="res://RPANEL-BatteryVoltage.tscn" type="PackedScene" id=5]
 [ext_resource path="res://RPANEL-FuelCell.tscn" type="PackedScene" id=6]
-[ext_resource path="res://serialData.tscn" type="PackedScene" id=7]
-[ext_resource path="res://main.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -26,7 +24,6 @@ default_font = SubResource( 3 )
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 8 )
 
 [node name="BGColorRect" type="ColorRect" parent="."]
 margin_right = 1920.0
@@ -122,5 +119,3 @@ anchor_bottom = 0.0
 margin_top = 806.0
 margin_right = 1006.0
 margin_bottom = 1588.0
-
-[node name="serialData" parent="." instance=ExtResource( 7 )]

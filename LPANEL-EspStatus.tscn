@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://fonts/Brink - BR Cobane Bold.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://fonts/Brink - BR Cobane Light.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://readSerial.tscn" type="PackedScene" id=4]
+[ext_resource path="res://serialData.tscn" type="PackedScene" id=3]
+[ext_resource path="res://LPANEL-EspStatus.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=2]
 size = 28
@@ -30,6 +31,7 @@ anchor_right = 0.396
 anchor_bottom = 0.833
 margin_right = -0.320007
 margin_bottom = -573.64
+script = ExtResource( 4 )
 
 [node name="BGColorRect" type="ColorRect" parent="."]
 margin_right = 760.0
@@ -77,7 +79,7 @@ margin_left = 140.0
 margin_right = 259.0
 margin_bottom = 25.0
 theme = SubResource( 4 )
-custom_colors/font_color = Color( 0.211765, 0.760784, 0.105882, 1 )
+custom_colors/font_color = Color( 0.760784, 0.105882, 0.105882, 1 )
 text = "Connected"
 
 [node name="LastPingBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ESP32Status"]
@@ -92,7 +94,7 @@ theme = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Last ping:"
 
-[node name="ConnectionStatus" type="Label" parent="MarginContainer/VBoxContainer/ESP32Status/LastPingBox"]
+[node name="LastPingSec" type="Label" parent="MarginContainer/VBoxContainer/ESP32Status/LastPingBox"]
 margin_left = 107.0
 margin_right = 179.0
 margin_bottom = 25.0
@@ -134,10 +136,28 @@ margin_bottom = 93.0
 margin_right = 644.0
 margin_bottom = 60.0
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ESP32Raw/MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ESP32Raw/MarginContainer/HBoxContainer"]
+margin_right = 490.0
+margin_bottom = 60.0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ESP32Raw/MarginContainer/HBoxContainer/MarginContainer"]
 margin_right = 490.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 490, 60 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ESP32Raw/MarginContainer/HBoxContainer/MarginContainer"]
+anchor_left = 0.073
+anchor_right = 0.119
+margin_right = 377.46
+margin_bottom = 60.0
+
+[node name="RawData" type="Label" parent="MarginContainer/VBoxContainer/ESP32Raw/MarginContainer/HBoxContainer/MarginContainer/MarginContainer"]
+margin_top = 17.0
+margin_right = 400.0
+margin_bottom = 42.0
+theme = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
 
 [node name="LogButton" type="Button" parent="MarginContainer/VBoxContainer/ESP32Raw/MarginContainer/HBoxContainer"]
 margin_left = 494.0
@@ -147,4 +167,4 @@ rect_min_size = Vector2( 150, 0 )
 theme = SubResource( 6 )
 text = "Open Log"
 
-[node name="readSerial" parent="." instance=ExtResource( 4 )]
+[node name="serialData" parent="." instance=ExtResource( 3 )]

@@ -26,4 +26,3 @@ func _process(delta):
 			connected = false
 		else:
 			connected = true
-	print(connected)
