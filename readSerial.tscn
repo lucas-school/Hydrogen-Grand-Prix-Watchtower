@@ -2,7 +2,7 @@
 
 [ext_resource path="res://readSerial.py" type="Script" id=1]
 
-[node name="readSerial" type="Control"]
+[node name="readSerial" type="Control" groups=["serial"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )

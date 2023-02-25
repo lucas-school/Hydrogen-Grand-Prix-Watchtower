@@ -1,21 +1,26 @@
 from godot import exposed, export
 from godot import *
 import serial
+
+# For reading comm ports
 import sys
 import glob
 
-#ser = serial.Serial('COM6', 115200, timeout=.1)
+# For log
+import csv
+import time
+
+ser = serial.Serial('COM6', 115200, timeout=.1)
+ser_data_list = []
+global ser_data 
+ser_data = ""
 
 @exposed
 class readSerial(Control):
-
-	# member variables here, example:
-	a = export(int)
-	b = export(str, default='foo')
-	ser = export(str, default='disconnected')
 	
 	def serial_ports(self):
-		""" Lists serial port names
+		""" 
+			Lists serial port names
 
 			:raises EnvironmentError:
 				On unsupported or unknown platforms
@@ -45,10 +50,42 @@ class readSerial(Control):
 
 	def _ready(self):
 		print(ser)
-		#print(serial_ports())
+	
 	
 	def _process(self, delta):
-		#print(ser.readline())
-		print(self.serial_ports())
-	
+		# data to always send
+		serial_data_nodes = self.get_tree().get_nodes_in_group("serial_data")
+		for node in serial_data_nodes:
+			#node.com_ports = serial_ports()
+			pass
+		
+		
+		# decoding serial data
+		global ser_data
+		ser_data = ser.readline().decode()
+		ser_data_list = []
+		tempstr = ""
+		
+		# remove letters from string
+		for char in ser_data:
+			if not char.isalpha():
+				tempstr += char
+		ser_data = tempstr
+		
+		
+		if ser_data:
+			ser_data_list = ser_data.split(" ")
+		
+		#ser_data = export(str,ser_data)
+		if ser_data_list:
+			
+			# send data to another node coded in godot
+			serial_data_nodes = self.get_tree().get_nodes_in_group("serial_data")
+			for node in serial_data_nodes:
+				node.serial_data = ser_data.strip()
+				node.battery_voltage = ser_data_list[0]
+				node.red_led = ser_data_list[1]
+				node.green_led = ser_data_list[2]
+				node.solenoid_time = ser_data_list[3]
+				node.time_last = int(time.time())
 

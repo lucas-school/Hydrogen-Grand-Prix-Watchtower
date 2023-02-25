@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://fonts/Brink - BR Cobane Bold.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://fonts/Brink - BR Cobane Light.otf" type="DynamicFontData" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://LPANEL-CarStatus.tscn" type="PackedScene" id=4]
 [ext_resource path="res://RPANEL-BatteryVoltage.tscn" type="PackedScene" id=5]
 [ext_resource path="res://RPANEL-FuelCell.tscn" type="PackedScene" id=6]
+[ext_resource path="res://serialData.tscn" type="PackedScene" id=7]
+[ext_resource path="res://main.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -24,6 +26,7 @@ default_font = SubResource( 3 )
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 8 )
 
 [node name="BGColorRect" type="ColorRect" parent="."]
 margin_right = 1920.0
@@ -74,22 +77,22 @@ scroll_horizontal_enabled = false
 
 [node name="MarginContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftPanel/ScrollContainer"]
 margin_right = 760.0
-margin_bottom = 348.0
+margin_bottom = 350.0
 custom_constants/separation = 24
 
 [node name="ESPStatus" parent="MarginContainer/HBoxContainer/LeftPanel/ScrollContainer/MarginContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 760.0
-margin_bottom = 324.0
-rect_min_size = Vector2( 760, 324 )
+margin_bottom = 326.0
+rect_min_size = Vector2( 760, 326 )
 
 [node name="CarStatus" parent="MarginContainer/HBoxContainer/LeftPanel/ScrollContainer/MarginContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 348.0
+margin_top = 350.0
 margin_right = 760.0
-margin_bottom = 348.0
+margin_bottom = 350.0
 
 [node name="RightPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 margin_left = 794.0
@@ -119,3 +122,5 @@ anchor_bottom = 0.0
 margin_top = 806.0
 margin_right = 1006.0
 margin_bottom = 1588.0
+
+[node name="serialData" parent="." instance=ExtResource( 7 )]
