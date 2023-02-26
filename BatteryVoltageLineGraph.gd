@@ -40,13 +40,10 @@ func _ready():
 	cp.interactive = true # false by default, it allows the chart to create a tooltip to show point values
 	# and interecept clicks on the plot
 	
-	voltage_graph = Function.new(x, y, "Voltage", { color = Color("#1b1ec2"), type = Function.Type.LINE, marker = Function.Marker.CIRCLE, interpolation = Function.Interpolation.SPLINE })
+	voltage_graph = Function.new(x, y, "Voltage", { color = Color("#1b1ec2"), type = Function.Type.LINE, marker = Function.Marker.CIRCLE, interpolation = Function.Interpolation.LINEAR })
 	
-	# Now let's plot our data
 	chart.plot([voltage_graph], cp)
 
-
-var new_val: float = 4.5
 
 func _process(delta: float):
 	pass
@@ -58,19 +55,3 @@ func push_value_update():
 	if total_x_points > min_points:
 		voltage_graph.remove_first_point()
 	chart.update()
-
-
-
-func _on_TestTimer_timeout():
-	new_val += 1
-	
-	# we can use the `Function.add_point(x, y)` method to update a function
-	# use Function.remove_first_point() to remove first point
-	voltage_graph.add_point(new_val, (sin(new_val) * 20) + 20)
-	var total_x_points = len(voltage_graph.get_points()[0])
-
-	if total_x_points > min_points:
-		voltage_graph.remove_first_point()
-
-	
-	chart.update() # This will force the Chart to be updated

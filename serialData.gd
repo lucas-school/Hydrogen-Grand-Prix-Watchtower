@@ -16,15 +16,18 @@ var green_led_flashing
 var time_last #unix time of last ping
 var time_since #time since last ping
 
-var time_since_start #time since very first reception
+var time_since_start = 0 #time since very first reception
 var time_started = 0 #time of very first reception
 var started = false
 
 var update_voltage_graph = false
 var update_fuel_cell_graph = false
 onready var update_once = true
+var last_push = 0
 
 ###
+#CHANGE IF EVER CHANGED
+var time_between_data = 5
 
 var graphs
 # Called when the node enters the scene tree for the first time.
@@ -65,14 +68,12 @@ func _process(delta):
 		time_since_start = OS.get_unix_time() - time_started
 		if time_since_start == OS.get_unix_time():
 			time_since_start = 0
-			
-		# prevent weird graph formations
-		time_since_start += 1
 		
 		
 		print(time_since_start)
 		# push updates to graphs
-		if time_last == OS.get_unix_time() and update_once and battery_voltage is float:
+		if time_last == OS.get_unix_time() and update_once and battery_voltage is float and OS.get_unix_time() - last_push > time_between_data + 1 and time_since_start > 0:
+			last_push = OS.get_unix_time()
 			for graph in graphs:
 				graph.push_value_update()
 			update_once = false
