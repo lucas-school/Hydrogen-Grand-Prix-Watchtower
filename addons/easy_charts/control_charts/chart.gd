@@ -78,6 +78,7 @@ func load_functions(functions: Array) -> void:
 func _draw() -> void:
 	# GridBox
 	var x_domain: Dictionary = calculate_domain(x)
+
 	var y_domain: Dictionary = calculate_domain(y)
 	
 	var plotbox_margins: Vector2 = calculate_plotbox_margins(x_domain, y_domain)
@@ -97,7 +98,9 @@ func calculate_domain(values: Array) -> Dictionary:
 		if ECUtilities._contains_string(value_array):
 			return { lb = 0.0, ub = (value_array.size() - 1), has_decimals = false }
 	var min_max: Dictionary = ECUtilities._find_min_max(values)
-	return { lb = ECUtilities._round_min(min_max.min), ub = ECUtilities._round_max(min_max.max), has_decimals = ECUtilities._has_decimals(values) }
+	
+	#print({ lb = ECUtilities._round_min(min_max.min), ub = ECUtilities._round_max(min_max.max), has_decimals = ECUtilities._has_decimals(values) })
+	return { lb = min_max.min, ub = min_max.max, has_decimals = ECUtilities._has_decimals(values) }
 
 func update_gridbox(x_domain: Dictionary, y_domain: Dictionary, x_labels: PoolStringArray, y_labels: PoolStringArray) -> void:
 	grid_box.set_domains(x_domain, y_domain)

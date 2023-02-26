@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://fonts/Brink - BR Cobane Bold.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://fonts/Brink - BR Cobane Light.otf" type="DynamicFontData" id=2]
 [ext_resource path="res://BatteryVoltageLineGraph.tscn" type="PackedScene" id=3]
+[ext_resource path="res://serialData.tscn" type="PackedScene" id=4]
+[ext_resource path="res://RPANEL-BatteryVoltage.gd" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=9]
 size = 28
@@ -24,6 +26,7 @@ anchor_bottom = 0.724
 margin_right = -0.0800781
 margin_bottom = 0.0799561
 rect_min_size = Vector2( 1006, 782 )
+script = ExtResource( 5 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 1006.0
@@ -86,63 +89,4 @@ theme = SubResource( 5 )
 custom_colors/font_color = Color( 0.105882, 0.117647, 0.760784, 1 )
 text = "7.93V"
 
-[node name="RedLEDBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CarStatus"]
-visible = false
-margin_right = 886.0
-margin_bottom = 25.0
-
-[node name="RedLED" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/RedLEDBox"]
-margin_right = 97.0
-margin_bottom = 25.0
-theme = SubResource( 5 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Red LED:"
-
-[node name="RedLEDStatus" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/RedLEDBox"]
-margin_left = 101.0
-margin_right = 172.0
-margin_bottom = 25.0
-theme = SubResource( 5 )
-custom_colors/font_color = Color( 0, 0, 0, 0.427451 )
-text = "Offline"
-
-[node name="GreenLEDBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CarStatus"]
-visible = false
-margin_right = 886.0
-margin_bottom = 25.0
-
-[node name="GreenLED" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/GreenLEDBox"]
-margin_right = 122.0
-margin_bottom = 25.0
-theme = SubResource( 5 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Green LED:"
-
-[node name="GreenLEDStatus" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/GreenLEDBox"]
-margin_left = 126.0
-margin_right = 217.0
-margin_bottom = 25.0
-theme = SubResource( 5 )
-custom_colors/font_color = Color( 0.211765, 0.760784, 0.105882, 1 )
-text = "Showing"
-
-[node name="GreenLEDBox2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CarStatus"]
-visible = false
-margin_top = 120.0
-margin_right = 639.0
-margin_bottom = 145.0
-
-[node name="GreenLED" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/GreenLEDBox2"]
-margin_right = 122.0
-margin_bottom = 25.0
-theme = SubResource( 5 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Green LED:"
-
-[node name="GreenLEDStatus" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/GreenLEDBox2"]
-margin_left = 126.0
-margin_right = 217.0
-margin_bottom = 25.0
-theme = SubResource( 5 )
-custom_colors/font_color = Color( 0.211765, 0.760784, 0.105882, 1 )
-text = "Showing"
+[node name="serialData" parent="." instance=ExtResource( 4 )]

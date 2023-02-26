@@ -1,18 +1,22 @@
 extends Control
 
 onready var chart: Chart = $VBoxContainer/Chart
+onready var serial_data = $serialData
 
-# This Chart will plot 3 different functions
+var min_points = 60
 
-var voltage_graph: Function
+
+var h2_graph: Function
+var update = false # ensure only run updates once
+
 
 func _ready():
-	# Let's create our @x values
-	var x: Array = ArrayOperations.multiply_float(range(-10, 11, 1), 0.5)
-	
+
+	var x: Array = [0]
+	var y: Array = [0]
 	# And our y values. It can be an n-size array of arrays.
 	# NOTE: `x.size() == y.size()` or `x.size() == y[n].size()`
-	var y2: Array = ArrayOperations.add_float(ArrayOperations.multiply_int(ArrayOperations.sin(x), 20), 20)
+	#var y: Array = ArrayOperations.add_float(ArrayOperations.multiply_int(ArrayOperations.sin(x), 20), 20)
 	
 	# Let's customize the chart properties, which specify how the chart
 	# should look, plus some additional elements like labels, the scale, etc...
@@ -25,32 +29,34 @@ func _ready():
 	cp.draw_bounding_box = false
 	cp.title = "Hydrogen Remaining"
 	cp.x_label = "Time"
-	cp.y_label = "Hydrogen"
+	cp.y_label = "H2"
 	cp.x_scale = 5
 	cp.y_scale = 10
 	cp.interactive = true # false by default, it allows the chart to create a tooltip to show point values
 	# and interecept clicks on the plot
 	
-	voltage_graph = Function.new(x, y2, "Hydrogen", { color = Color("#1bc2b6"), type = Function.Type.LINE, marker = Function.Marker.CROSS, interpolation = Function.Interpolation.SPLINE })
+	h2_graph = Function.new(x, y, "Hydrogen", { color = Color("#1bc2b6"), type = Function.Type.LINE, marker = Function.Marker.CIRCLE, interpolation = Function.Interpolation.SPLINE })
 	
 	# Now let's plot our data
-	chart.plot([voltage_graph], cp)
-	
-	# Uncommenting this line will show how real time data plotting works
-	set_process(false)
+	chart.plot([h2_graph], cp)
 
 
 var new_val: float = 4.5
 
 func _process(delta: float):
-	# This function updates the values of a function and then updates the plot
-	new_val += 5
+	pass
+		
+
+func _on_TestTimer_timeout():
+	new_val += 1
 	
 	# we can use the `Function.add_point(x, y)` method to update a function
+	# use Function.remove_first_point() to remove first point
+	h2_graph.add_point(new_val, (sin(new_val) * 20) + 20)
+	var total_x_points = len(h2_graph.get_points()[0])
 
-	voltage_graph.add_point(new_val, (sin(new_val) * 20) + 20)
+	if total_x_points > min_points:
+		h2_graph.remove_first_point()
+
+	
 	chart.update() # This will force the Chart to be updated
-
-
-func _on_CheckButton_pressed():
-	set_process(not is_processing())

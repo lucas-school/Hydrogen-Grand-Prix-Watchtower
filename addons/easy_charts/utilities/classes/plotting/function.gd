@@ -39,6 +39,16 @@ func add_point(x: float, y: float) -> void:
 	self.x.append(x)
 	self.y.append(y)
 
+func remove_first_point() -> void:
+	if len(self.x) > 1 and len(self.y) > 1:
+		self.x.pop_front()
+		self.y.pop_front()
+
+
+
+func get_points():
+	return [self.x,self.y]
+
 func get_color() -> Color:
 	return props.get("color", Color.cornflower)
 

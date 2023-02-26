@@ -75,17 +75,17 @@ class readSerial(Control):
 		
 		if ser_data:
 			ser_data_list = ser_data.split(" ")
+			print(ser_data)
 		
-		#ser_data = export(str,ser_data)
-		if ser_data_list:
-			
-			# send data to another node coded in godot
-			serial_data_nodes = self.get_tree().get_nodes_in_group("serial_data")
-			for node in serial_data_nodes:
-				node.serial_data = ser_data.strip()
-				node.battery_voltage = float(ser_data_list[0])
-				node.red_led = int(ser_data_list[1])
-				node.green_led = int(ser_data_list[2])
-				node.solenoid_time = ser_data_list[3]
-				node.time_last = int(time.time())
-
+		if ser_data_list != None and len(ser_data_list) > 0:
+			if ser_data_list[0] != '' and ser_data_list[1] != '' and ser_data_list[2] != '' and ser_data_list[3] != '':
+				
+				# send data to another node coded in godot
+				serial_data_nodes = self.get_tree().get_nodes_in_group("serial_data")
+				for node in serial_data_nodes:
+					node.serial_data = ser_data.strip()
+					node.battery_voltage = float(ser_data_list[0])
+					node.red_led = int(ser_data_list[1])
+					node.green_led = int(ser_data_list[2])
+					node.solenoid_time = int(ser_data_list[3])
+					node.time_last = int(time.time())
