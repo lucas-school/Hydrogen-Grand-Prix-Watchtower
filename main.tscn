@@ -34,6 +34,7 @@ margin_left = 60.0
 margin_top = 60.0
 margin_right = 1860.0
 margin_bottom = 1020.0
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 margin_right = 1812.0
@@ -70,6 +71,7 @@ margin_top = 102.0
 margin_right = 770.0
 margin_bottom = 960.0
 rect_min_size = Vector2( 770, 858 )
+mouse_filter = 1
 scroll_horizontal_enabled = false
 
 [node name="MarginContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftPanel/ScrollContainer"]
@@ -100,11 +102,12 @@ margin_bottom = 960.0
 margin_right = 1018.0
 margin_bottom = 960.0
 rect_min_size = Vector2( 1006, 960 )
+mouse_filter = 1
 scroll_horizontal_enabled = false
 
 [node name="MarginContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightPanel/ScrollContainer"]
 margin_right = 1006.0
-margin_bottom = 1588.0
+margin_bottom = 1616.0
 custom_constants/separation = 24
 
 [node name="BatteryVoltageGraph" parent="MarginContainer/HBoxContainer/RightPanel/ScrollContainer/MarginContainer" instance=ExtResource( 5 )]
@@ -118,4 +121,4 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 806.0
 margin_right = 1006.0
-margin_bottom = 1588.0
+margin_bottom = 1616.0

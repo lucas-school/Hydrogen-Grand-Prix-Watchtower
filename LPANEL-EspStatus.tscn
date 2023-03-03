@@ -19,12 +19,12 @@ font_data = ExtResource( 2 )
 [sub_resource type="Theme" id=4]
 default_font = SubResource( 3 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=7]
 size = 24
 font_data = ExtResource( 1 )
 
 [sub_resource type="Theme" id=6]
-default_font = SubResource( 5 )
+default_font = SubResource( 7 )
 
 [node name="EspStatus" type="Control"]
 anchor_right = 0.396

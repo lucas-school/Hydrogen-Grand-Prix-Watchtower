@@ -13,6 +13,8 @@ var green_led_flashing
 
 var hydrogen_remaining_percent
 var hydrogen_max = 17.4
+var solenoid_time_calc
+var solenoid_time_difference = 0
 #var com_ports
 
 var time_last #unix time of last ping
@@ -87,7 +89,9 @@ func _process(delta):
 		if time_since_start == OS.get_unix_time():
 			time_since_start = 0
 		
-		hydrogen_remaining_percent = round((hydrogen_max - solenoid_time) / hydrogen_max * 100)
+		solenoid_time_calc = solenoid_time - solenoid_time_difference #factor in difference. Difference calculated when hydrogen is reset
+		hydrogen_remaining_percent = round((hydrogen_max - solenoid_time_calc) / hydrogen_max * 100)
+
 
 
 
