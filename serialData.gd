@@ -31,7 +31,7 @@ var time_between_data = 5
 
 var graphs
 
-onready var serial_data_file = 'res://python/temp/temp.txt'
+onready var serial_data_file = 'res://python/temp/temp'
 
 
 # Called when the node enters the scene tree for the first time.
@@ -89,7 +89,7 @@ func _process(delta):
 			time_since_start = 0
 		
 		
-		print(time_since_start)
+		#(time_since_start)
 		# push updates to graphs
 		if time_last == OS.get_unix_time() and update_once and battery_voltage is float and OS.get_unix_time() - last_push > time_between_data + 1 and time_since_start > 0:
 			last_push = OS.get_unix_time()
@@ -101,4 +101,16 @@ func _process(delta):
 
 # check temp file for serial data and update variables
 func _on_checkSerialTimer_timeout():
-	print(load_file(serial_data_file))
+	# on timer timeout,load from temp file
+	var serial_raw = load_file(serial_data_file)
+	
+	# seperate into a list
+	var serial_raw_sep = serial_raw.split(",")
+	
+	# update variables
+	serial_data = serial_raw
+	battery_voltage = float(serial_raw_sep[1])
+	red_led = float(serial_raw_sep[2])
+	green_led = float(serial_raw_sep[3])
+	solenoid_time = int(serial_raw_sep[4])
+	time_last = int(serial_raw_sep[0])
