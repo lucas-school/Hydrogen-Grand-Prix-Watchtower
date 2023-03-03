@@ -35,7 +35,7 @@ func _ready():
 	cp.interactive = true # false by default, it allows the chart to create a tooltip to show point values
 	# and interecept clicks on the plot
 	
-	h2_graph = Function.new(x, y, "Hydrogen", { color = Color("#1bc2b6"), type = Function.Type.LINE, marker = Function.Marker.CIRCLE, interpolation = Function.Interpolation.SPLINE })
+	h2_graph = Function.new(x, y, "Hydrogen", { color = Color("#1bc2b6"), type = Function.Type.LINE, marker = Function.Marker.CIRCLE, interpolation = Function.Interpolation.LINEAR })
 	
 	# Now let's plot our data
 	chart.plot([h2_graph], cp)
@@ -47,16 +47,10 @@ func _process(delta: float):
 	pass
 		
 
-func _on_TestTimer_timeout():
-	new_val += 1
-	
-	# we can use the `Function.add_point(x, y)` method to update a function
-	# use Function.remove_first_point() to remove first point
-	h2_graph.add_point(new_val, (sin(new_val) * 20) + 20)
+func push_value_update():
+	#("Updating Voltage Graph")
+	h2_graph.add_point(round(serial_data.time_since_start), serial_data.hydrogen_remaining_percent)
 	var total_x_points = len(h2_graph.get_points()[0])
-
 	if total_x_points > min_points:
 		h2_graph.remove_first_point()
-
-	
-	chart.update() # This will force the Chart to be updated
+	chart.update()

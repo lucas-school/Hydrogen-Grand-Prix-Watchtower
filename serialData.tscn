@@ -11,4 +11,9 @@ script = ExtResource( 1 )
 wait_time = 0.5
 autostart = true
 
+[node name="pushGraphTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="timeout" from="checkSerialTimer" to="." method="_on_checkSerialTimer_timeout"]
+[connection signal="timeout" from="pushGraphTimer" to="." method="_on_pushGraphTimer_timeout"]

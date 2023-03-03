@@ -11,6 +11,8 @@ var solenoid_time
 var red_led_flashing
 var green_led_flashing
 
+var hydrogen_remaining_percent
+var hydrogen_max = 17.4
 #var com_ports
 
 var time_last #unix time of last ping
@@ -22,10 +24,8 @@ var started = false
 
 var update_voltage_graph = false
 var update_fuel_cell_graph = false
-onready var update_once = true
-var last_push = 0
 
-###
+
 #CHANGE IF EVER CHANGED
 var time_between_data = 5
 
@@ -48,7 +48,6 @@ func load_file(file):
 	while not f.eof_reached(): # iterate through all lines until the end of file is reached
 		line = f.get_line()
 		line += " "
-
 		index += 1
 	f.close()
 	return line
@@ -88,16 +87,9 @@ func _process(delta):
 		if time_since_start == OS.get_unix_time():
 			time_since_start = 0
 		
-		
-		#(time_since_start)
-		# push updates to graphs
-		if time_last == OS.get_unix_time() and update_once and battery_voltage is float and OS.get_unix_time() - last_push > time_between_data + 1 and time_since_start > 0:
-			last_push = OS.get_unix_time()
-			for graph in graphs:
-				graph.push_value_update()
-			update_once = false
-		else:
-			update_once = true
+		hydrogen_remaining_percent = round((hydrogen_max - solenoid_time) / hydrogen_max * 100)
+
+
 
 # check temp file for serial data and update variables
 func _on_checkSerialTimer_timeout():
@@ -112,5 +104,11 @@ func _on_checkSerialTimer_timeout():
 	battery_voltage = float(serial_raw_sep[1])
 	red_led = float(serial_raw_sep[2])
 	green_led = float(serial_raw_sep[3])
-	solenoid_time = int(serial_raw_sep[4])
+	solenoid_time = float(serial_raw_sep[4]) / 10 #convert to seconds
 	time_last = int(serial_raw_sep[0])
+
+
+func _on_pushGraphTimer_timeout():
+	if serial_data:
+		for graph in graphs:
+			graph.push_value_update()

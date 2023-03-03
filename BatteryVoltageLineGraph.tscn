@@ -19,8 +19,4 @@ anchor_bottom = 0.0
 margin_right = 1920.0
 margin_bottom = 1080.0
 
-[node name="TestTimer" type="Timer" parent="."]
-
 [node name="serialData" parent="." instance=ExtResource( 3 )]
-
-[connection signal="timeout" from="TestTimer" to="." method="_on_TestTimer_timeout"]

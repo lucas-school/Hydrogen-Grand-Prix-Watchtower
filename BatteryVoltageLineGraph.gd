@@ -50,7 +50,7 @@ func _process(delta: float):
 
 func push_value_update():
 	#("Updating Voltage Graph")
-	voltage_graph.add_point(serial_data.time_since_start, serial_data.battery_voltage)
+	voltage_graph.add_point(round(serial_data.time_since_start), serial_data.battery_voltage)
 	var total_x_points = len(voltage_graph.get_points()[0])
 	if total_x_points > min_points:
 		voltage_graph.remove_first_point()
