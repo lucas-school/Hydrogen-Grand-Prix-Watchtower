@@ -166,7 +166,7 @@ window/stretch/aspect="keep"
 
 [gdnative]
 
-singletons=[ "res://pythonscript.gdnlib" ]
+singletons=[  ]
 
 [gui]
 
