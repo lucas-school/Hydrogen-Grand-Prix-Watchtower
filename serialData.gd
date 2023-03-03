@@ -30,14 +30,33 @@ var last_push = 0
 var time_between_data = 5
 
 var graphs
+
+onready var serial_data_file = 'res://python/temp/temp.txt'
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	graphs = get_tree().get_nodes_in_group("graphs")
+
 	#serial_data = get_tree().get_nodes_in_group("serial_data")[0]
+func load_file(file):
+
+	var f = File.new()
+	f.open(file, File.READ)
+	var index = 1
+	var line
+	while not f.eof_reached(): # iterate through all lines until the end of file is reached
+		line = f.get_line()
+		line += " "
+
+		index += 1
+	f.close()
+	return line
+
+
 
 # warning-ignore:unused_argument
 func _process(delta):
-	
 	# store start time
 	if started == false and connected:
 		time_started = OS.get_unix_time()
@@ -79,3 +98,7 @@ func _process(delta):
 			update_once = false
 		else:
 			update_once = true
+
+# check temp file for serial data and update variables
+func _on_checkSerialTimer_timeout():
+	print(load_file(serial_data_file))

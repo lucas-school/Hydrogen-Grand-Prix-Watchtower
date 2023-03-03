@@ -20,11 +20,7 @@ temp_file_name = "temp"
 # init log file
 current_time = datetime.datetime.now()
 with open ("logs/" + log_file_name,'w') as file:
-    file.write(str(current_time) + ': Python launched. Reminder, this log will only output data stream from ESP, not Godot')
-
-# TESTING open temp file
-with open ("temp/" + temp_file_name,'w') as file:
-    file.write(" ")
+    file.write(str(current_time) + ': Python launched. Reminder, this log will only output data stream from ESP, not Godot\n')
 
 def get_serial_ports():
     """
@@ -71,8 +67,6 @@ if serial_port_index == -1:
 
 
 # open serial port at chosen index
-ser = serial.Serial(serial_ports[serial_port_index], 115200, timeout=.1)
-ser = serial.Serial(serial_ports[serial_port_index], 9600, timeout=.1)
 ser = serial.Serial(serial_ports[serial_port_index], 115200, timeout=6)
 ser.xonxoff=1
 
@@ -80,14 +74,32 @@ ser.xonxoff=1
 # program loop
 running = True
 while running:
-    ser_data=ser.readline()
-    print(ser_data)
+    # read newest serial data line, decode bytes and remove newline
+    ser_data=ser.readline().decode().rstrip()
 
+    # log formatted serial data
+    log_format_ser = str(datetime.datetime.now()) +": " + ser_data
 
-# make new text file on launch
+    # print timestamp and serial data
+    print(log_format_ser)
 
-# ensure theres a file called "temp" for temp logging, if not make it
+    # append data to permanent log
+    with open ("logs/" + log_file_name,'a') as file:
+        file.write(log_format_ser + '\n')
 
-# log data in both files when updated. Remove the previous one in "temp". Log with timestamp
+    # format data seperated by commas to tempfile. <time>,<battery>,<led1>,<led2>,<time solenoid open>
+    ser_data_list = []
+    ser_data_list.append(str(round(time.time())))
+    ser_data_list += ser_data.split()
 
-# read in godot, seperate data into a list with rsplit then into variables
+    temp_string = ""
+    ser_data_list_length = len(ser_data_list)
+    for i in range(ser_data_list_length):
+        if i != ser_data_list_length - 1:
+            temp_string += ser_data_list[i] + ","
+        else:
+            temp_string += ser_data_list[i]
+
+    # write data seperated by commas to temp file
+    with open ("temp/" + temp_file_name,'w') as file:
+        file.write(temp_string)
