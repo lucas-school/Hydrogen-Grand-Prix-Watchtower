@@ -1,1 +1,0 @@
-2023-03-03 09:57:20.159743: Python launched. Reminder, this log will only output data stream from ESP, not Godot

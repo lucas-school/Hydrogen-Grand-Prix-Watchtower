@@ -31,6 +31,7 @@ anchor_right = 0.396
 anchor_bottom = 0.833
 margin_right = -0.320007
 margin_bottom = -573.64
+mouse_filter = 2
 script = ExtResource( 4 )
 
 [node name="BGColorRect" type="ColorRect" parent="."]
@@ -45,6 +46,7 @@ margin_left = 60.0
 margin_top = 60.0
 margin_right = -60.0
 margin_bottom = -2504.16
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_right = 644.0
@@ -131,6 +133,7 @@ text = "ESP-32 Raw"
 margin_top = 33.0
 margin_right = 644.0
 margin_bottom = 93.0
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ESP32Raw/MarginContainer"]
 margin_right = 644.0
@@ -139,6 +142,7 @@ margin_bottom = 60.0
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ESP32Raw/MarginContainer/HBoxContainer"]
 margin_right = 490.0
 margin_bottom = 60.0
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/ESP32Raw/MarginContainer/HBoxContainer/MarginContainer"]
 margin_right = 490.0
@@ -148,6 +152,7 @@ rect_min_size = Vector2( 490, 60 )
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ESP32Raw/MarginContainer/HBoxContainer/MarginContainer"]
 margin_right = 490.0
 margin_bottom = 60.0
+mouse_filter = 2
 
 [node name="RawData" type="Label" parent="MarginContainer/VBoxContainer/ESP32Raw/MarginContainer/HBoxContainer/MarginContainer/MarginContainer"]
 margin_top = 17.0
@@ -162,7 +167,11 @@ margin_left = 494.0
 margin_right = 644.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 150, 0 )
+mouse_default_cursor_shape = 2
 theme = SubResource( 6 )
 text = "Open Log"
 
 [node name="serialData" parent="." instance=ExtResource( 3 )]
+mouse_filter = 2
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ESP32Raw/MarginContainer/HBoxContainer/LogButton" to="." method="_on_LogButton_pressed"]

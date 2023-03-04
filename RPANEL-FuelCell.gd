@@ -19,8 +19,5 @@ func _process(delta):
 
 
 func _on_ResetHydrogen_pressed():
-	print("resetting")
-	
 	for node in get_tree().get_nodes_in_group("serial_data"):
 		node.solenoid_time_difference += serial_data.solenoid_time_calc
-

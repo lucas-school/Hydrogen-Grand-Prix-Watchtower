@@ -22,3 +22,8 @@ func _process(delta):
 		$MarginContainer/VBoxContainer/ESP32Status/ConnectionBox/ConnectionStatus.add_color_override("font_color",Color("c21b1b")) #red
 		$MarginContainer/VBoxContainer/ESP32Status/LastPingBox/LastPingSec.text = "Disconnected"
 	
+
+
+func _on_LogButton_pressed():
+	OS.shell_open("file://python/logs")
+

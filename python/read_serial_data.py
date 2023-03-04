@@ -12,7 +12,7 @@ import datetime # for file name
 file_type = ".txt"
 
 # set name of log file to current datetime
-log_file_name = str(datetime.datetime.now()) + file_type
+log_file_name = str(time.time()) + file_type
 
 # set temp file to name "temp"
 temp_file_name = "temp"
