@@ -110,8 +110,8 @@ func calculate_domain_y(values: Array) -> Dictionary:
 	var lb = min_max.min
 	var ub = min_max.max
 	if abs(lb - ub) < 1:
-		lb -= .5
-		ub += .5
+		lb -= .25
+		ub += .25
 	#print({ lb = ECUtilities._round_min(min_max.min), ub = ECUtilities._round_max(min_max.max), has_decimals = ECUtilities._has_decimals(values) })
 	return { lb = lb, ub = ub, has_decimals = ECUtilities._has_decimals(values) }
 
