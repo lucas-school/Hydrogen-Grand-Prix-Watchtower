@@ -40,17 +40,17 @@ func _draw() -> void:
 		_draw_bounding_box()
 
 func _draw_background() -> void:
-	draw_rect(self.box, get_parent().chart_properties.colors.background, true, 1, false)
+	draw_rect(self.box, get_parent().chart_properties.colors.background, true, 1)# false) TODOConverter3To4 Antialiasing argument is missing
 
 func _draw_bounding_box() -> void:
-	draw_rect(self.box, get_parent().chart_properties.colors.bounding_box, false, 1, true)
+	draw_rect(self.box, get_parent().chart_properties.colors.bounding_box, false, 1)# true) TODOConverter3To4 Antialiasing argument is missing
 
 func _draw_origin() -> void:
 	var xorigin: float = ECUtilities._map_domain(0.0, x_domain, { lb = self.plot_box.position.x, ub = self.plot_box.end.x })
 	var yorigin: float = ECUtilities._map_domain(0.0, y_domain, { lb = self.plot_box.end.y, ub = self.plot_box.position.y })
 	
-	draw_line(Vector2(xorigin, self.plot_box.position.y), Vector2(xorigin, self.plot_box.position.y + self.plot_box.size.y), get_parent().chart_properties.colors.origin, 1, 0)
-	draw_line(Vector2(self.plot_box.position.x, yorigin), Vector2(self.plot_box.position.x + self.plot_box.size.x, yorigin), get_parent().chart_properties.colors.origin, 1, 0)
+	draw_line(Vector2(xorigin, self.plot_box.position.y), Vector2(xorigin, self.plot_box.position.y + self.plot_box.size.y), get_parent().chart_properties.colors.origin, 1)
+	draw_line(Vector2(self.plot_box.position.x, yorigin), Vector2(self.plot_box.position.x + self.plot_box.size.x, yorigin), get_parent().chart_properties.colors.origin, 1)
 	draw_string(get_parent().chart_properties.font, Vector2(xorigin, yorigin) - Vector2(15, -15), "O", get_parent().chart_properties.colors.text)
 
 
@@ -61,11 +61,11 @@ func _draw_vertical_grid() -> void:
 	#    should be devided
 	# 2. calculate the spacing between each line in pixel. It is equals to x_sampled_domain / x_scale
 	# 3. calculate the offset in the real x domain, which is x_domain / x_scale.
-	var scaler: int = get_parent().chart_properties.x_scale if self.x_labels.empty() else (x_labels.size() - 1)
+	var scaler: int = get_parent().chart_properties.x_scale if self.x_labels.is_empty() else (x_labels.size() - 1)
 	var x_pixel_dist: float = self.plot_box.size.x / scaler
 	
-	var vertical_grid: PoolVector2Array = []
-	var vertical_ticks: PoolVector2Array = []
+	var vertical_grid: PackedVector2Array = []
+	var vertical_ticks: PackedVector2Array = []
 	 
 	for _x in (scaler + 1):
 		var x_sampled_val: float = (_x * x_pixel_dist) + self.plot_box.position.x
@@ -106,8 +106,8 @@ func _draw_horizontal_grid() -> void:
 	# 3. calculate the offset in the real y domain, which is y_domain / y_scale.
 	var y_pixel_dist: float = self.plot_box.size.y / get_parent().chart_properties.y_scale
 	
-	var horizontal_grid: PoolVector2Array = []
-	var horizontal_ticks: PoolVector2Array = []
+	var horizontal_grid: PackedVector2Array = []
+	var horizontal_ticks: PackedVector2Array = []
 	
 	for _y in get_parent().chart_properties.y_scale + 1:
 		var y_sampled_val: float = (_y * y_pixel_dist) + self.plot_box.position.y
@@ -153,9 +153,9 @@ func _get_horizontal_tick_label_pos(base_position: Vector2, text: String) -> Vec
 		- get_parent().chart_properties.font.size * 0.35
 	)
 
-func _get_tick_label(line_index: int, line_value: float, axis_has_decimals: bool, labels: PoolStringArray) -> String:
+func _get_tick_label(line_index: int, line_value: float, axis_has_decimals: bool, labels: PackedStringArray) -> String:
 	var tick_lbl: String = ""
-	if labels.empty():
+	if labels.is_empty():
 		tick_lbl = ECUtilities._format_value(line_value, axis_has_decimals)
 	else:
 		tick_lbl = labels[line_index]  

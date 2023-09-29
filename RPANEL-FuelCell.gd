@@ -1,6 +1,6 @@
 extends Control
 
-onready var serial_data = $serialData
+@onready var serial_data = $serialData
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,7 +9,7 @@ func _ready():
 func _process(delta):
 	# hydrogen percent text
 	$MarginContainer/VBoxContainer/CarStatus/HBoxContainer/VBoxContainer/H2RemainingBox/H2RemainingAmount.text = str(serial_data.hydrogen_remaining_percent) + "%"
-	$MarginContainer/VBoxContainer/CarStatus/HBoxContainer/VBoxContainer/H2RemainingBox/H2RemainingAmount.add_color_override("font_color",Color("1bc2b6")) #blue
+	$MarginContainer/VBoxContainer/CarStatus/HBoxContainer/VBoxContainer/H2RemainingBox/H2RemainingAmount.add_theme_color_override("font_color",Color("1bc2b6")) #blue
 
 	# current solenoid time text
 	$MarginContainer/VBoxContainer/CarStatus/HBoxContainer/VBoxContainer/SolenoidTime/SolenoidTimeSec.text = str(serial_data.solenoid_time_calc) + "sec"

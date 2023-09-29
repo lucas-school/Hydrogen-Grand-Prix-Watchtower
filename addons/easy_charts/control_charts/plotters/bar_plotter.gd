@@ -5,13 +5,14 @@ class_name BarPlotter
 signal point_entered(point, function)
 signal point_exited(point, function)
 
-var bars: PoolVector2Array
+var bars: PackedVector2Array
 var bars_rects: Array
 var focused_bar_midpoint: Point
 
 var bar_size: float
 
-func _init(function: Function).(function) -> void:
+func _init(function: Function) -> void:
+	super(function)
 	self.bar_size = function.props.get("bar_size", 5.0)
 
 func _draw() -> void:

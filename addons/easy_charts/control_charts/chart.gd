@@ -1,18 +1,18 @@
 extends PanelContainer
 class_name Chart, "res://addons/easy_charts/utilities/icons/linechart.svg"
 
-onready var _canvas: Canvas = $Canvas
-onready var plot_box: PlotBox = $"%PlotBox"
-onready var grid_box: GridBox = $"%GridBox"
-onready var functions_box: Control = $"%FunctionsBox"
-onready var function_legend: FunctionLegend = $"%FunctionLegend"
+@onready var _canvas: Canvas = $Canvas
+@onready var plot_box: PlotBox = $"%PlotBox"
+@onready var grid_box: GridBox = $"%GridBox"
+@onready var functions_box: Control = $"%FunctionsBox"
+@onready var function_legend: FunctionLegend = $"%FunctionLegend"
 
 var functions: Array = []
 var x: Array = []
 var y: Array = []
 
-var x_labels: PoolStringArray = []
-var y_labels: PoolStringArray = []
+var x_labels: PackedStringArray = []
+var y_labels: PackedStringArray = []
 
 var chart_properties: ChartProperties = ChartProperties.new()
 
@@ -56,21 +56,21 @@ func load_functions(functions: Array) -> void:
 		self.y.append(function.y)
 		
 		# Load Labels
-		if self.x_labels.empty():
+		if self.x_labels.is_empty():
 			if ECUtilities._contains_string(function.x):
 				self.x_labels = function.x
 		
 		# Create FunctionPlotter
 		var function_plotter: FunctionPlotter = get_function_plotter(function)
-		function_plotter.connect("point_entered", plot_box, "_on_point_entered")
-		function_plotter.connect("point_exited", plot_box, "_on_point_exited")
+		function_plotter.connect("point_entered", Callable(plot_box, "_on_point_entered"))
+		function_plotter.connect("point_exited", Callable(plot_box, "_on_point_exited"))
 		functions_box.add_child(function_plotter)
 		
 		# Create legend
 		match function.get_type():
 			Function.Type.PIE:
 				for i in function.x.size():
-					var interp_color: Color = function.get_gradient().interpolate(float(i) / float(function.x.size()))
+					var interp_color: Color = function.get_gradient().sample(float(i) / float(function.x.size()))
 					function_legend.add_label(function.get_type(), interp_color, Function.Marker.NONE, function.y[i])
 			_:
 				function_legend.add_function(function)
@@ -116,7 +116,7 @@ func calculate_domain_y(values: Array) -> Dictionary:
 	return { lb = lb, ub = ub, has_decimals = ECUtilities._has_decimals(values) }
 
 
-func update_gridbox(x_domain: Dictionary, y_domain: Dictionary, x_labels: PoolStringArray, y_labels: PoolStringArray) -> void:
+func update_gridbox(x_domain: Dictionary, y_domain: Dictionary, x_labels: PackedStringArray, y_labels: PackedStringArray) -> void:
 	grid_box.set_domains(x_domain, y_domain)
 	grid_box.set_labels(x_labels, y_labels)
 	grid_box.update()

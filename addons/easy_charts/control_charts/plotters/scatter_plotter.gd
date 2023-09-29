@@ -5,12 +5,13 @@ signal point_entered(point, function)
 signal point_exited(point, function)
 
 var points: Array
-var points_positions: PoolVector2Array
+var points_positions: PackedVector2Array
 var focused_point: Point
 
 var point_size: float
 
-func _init(function: Function).(function) -> void:
+func _init(function: Function) -> void:
+	super(function)
 	self.point_size = function.props.get("point_size", 3.0)
 
 func _draw() -> void:
@@ -43,7 +44,7 @@ func draw_function_point(position: Vector2) -> void:
 			)
 		Function.Marker.TRIANGLE:
 			draw_colored_polygon(
-				PoolVector2Array([
+				PackedVector2Array([
 					position + (Vector2.UP * point_size * 1.3),
 					position + (Vector2.ONE * point_size * 1.3),
 					position - (Vector2(1, -1) * point_size * 1.3)

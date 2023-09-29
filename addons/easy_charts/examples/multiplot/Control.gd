@@ -1,6 +1,6 @@
 extends Control
 
-onready var chart: Chart = $VBoxContainer/Chart
+@onready var chart: Chart = $VBoxContainer/Chart
 
 # This Chart will plot 3 different functions
 var f1: Function
@@ -21,10 +21,10 @@ func _ready():
 	# should look, plus some additional elements like labels, the scale, etc...
 	var cp: ChartProperties = ChartProperties.new()
 	cp.colors.frame = Color("#161a1d")
-	cp.colors.background = Color.transparent
+	cp.colors.background = Color.TRANSPARENT
 	cp.colors.grid = Color("#283442")
 	cp.colors.ticks = Color("#283442")
-	cp.colors.text = Color.whitesmoke
+	cp.colors.text = Color.WHITE_SMOKE
 	cp.draw_bounding_box = false
 	cp.show_legend = true
 	cp.title = "Air Quality Monitoring"
@@ -54,7 +54,7 @@ func _ready():
 		}
 	)
 	f2 = Function.new(x, y2, "Humidity", { color = Color("#ff6384"), marker = Function.Marker.CROSS })
-	f3 = Function.new(x, y3, "CO2", { color = Color.green, marker = Function.Marker.TRIANGLE })
+	f3 = Function.new(x, y3, "CO2", { color = Color.GREEN, marker = Function.Marker.TRIANGLE })
 	
 	# Now let's plot our data
 	chart.plot([f1, f2, f3], cp)

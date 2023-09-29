@@ -1,12 +1,13 @@
 extends LinePlotter
 class_name AreaPlotter
 
-func _init(function: Function).(function) -> void:
+func _init(function: Function) -> void:
+	super(function)
 	pass
 
 func _draw_areas() -> void:
 	var box: Rect2 = get_box()
-	var fp_augmented: PoolVector2Array = []
+	var fp_augmented: PackedVector2Array = []
 	match function.get_interpolation():
 		Function.Interpolation.LINEAR:
 			fp_augmented = points_positions
@@ -19,9 +20,9 @@ func _draw_areas() -> void:
 	fp_augmented.push_back(Vector2(fp_augmented[-1].x, box.end.y))
 	
 	var base_color: Color = function.get_color()
-	var colors: PoolColorArray = []
+	var colors: PackedColorArray = []
 	for point in fp_augmented:
-		base_color.a = range_lerp(point.y, box.end.y, box.position.y, 0.0, 0.5)
+		base_color.a = remap(point.y, box.end.y, box.position.y, 0.0, 0.5)
 		colors.push_back(base_color)
 	draw_polygon(fp_augmented, colors)
 
