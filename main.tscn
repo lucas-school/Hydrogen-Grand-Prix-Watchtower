@@ -1,35 +1,49 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://bq8fd4n3pa8h"]
 
-[ext_resource path="res://fonts/Brink - BR Cobane Bold.otf" type="FontFile" id=1]
-[ext_resource path="res://fonts/Brink - BR Cobane Light3D.otf" type="FontFile" id=2]
-[ext_resource path="res://LPANEL-EspStatus.tscn" type="PackedScene" id=3]
-[ext_resource path="res://LPANEL-CarStatus.tscn" type="PackedScene" id=4]
-[ext_resource path="res://RPANEL-BatteryVoltage.tscn" type="PackedScene" id=5]
-[ext_resource path="res://RPANEL-FuelCell.tscn" type="PackedScene" id=6]
+[ext_resource type="FontFile" uid="uid://bt585iu7gwdji" path="res://fonts/Brink - BR Cobane Bold.otf" id="1"]
+[ext_resource type="PackedScene" path="res://LPANEL-EspStatus.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://LPANEL-CarStatus.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://d1srlok04s77k" path="res://RPANEL-BatteryVoltage.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://RPANEL-FuelCell.tscn" id="6"]
 
-[sub_resource type="FontFile" id=1]
-size = 48
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="1"]
+fallbacks = Array[Font]([ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="Theme" id=2]
-default_font = SubResource( 1 )
+[sub_resource type="Theme" id="2"]
+default_font = SubResource("1")
 
-[sub_resource type="FontFile" id=3]
-size = 24
-font_data = ExtResource( 2 )
+[sub_resource type="FontFile" id="3"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="Theme" id=4]
-default_font = SubResource( 3 )
+[sub_resource type="Theme" id="4"]
+default_font = SubResource("3")
 
 [node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BGColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 offset_left = 60.0
 offset_top = 60.0
 offset_right = 1860.0
@@ -37,88 +51,57 @@ offset_bottom = 1020.0
 mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-offset_right = 1812.0
-offset_bottom = 960.0
+layout_mode = 2
 theme_override_constants/separation = 24
 
 [node name="LeftPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-offset_right = 770.0
-offset_bottom = 960.0
+layout_mode = 2
 theme_override_constants/separation = 24
 
 [node name="TopRow" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftPanel"]
-offset_right = 770.0
-offset_bottom = 78.0
+layout_mode = 2
 alignment = 1
 
 [node name="Title" type="Label" parent="MarginContainer/HBoxContainer/LeftPanel/TopRow"]
-offset_right = 770.0
-offset_bottom = 49.0
-theme = SubResource( 2 )
-theme_override_colors/font_color = Color( 0, 0, 0, 1 )
+layout_mode = 2
+theme = SubResource("2")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Hydrogen Grand Prix Watchtower"
 
 [node name="Subtitle" type="Label" parent="MarginContainer/HBoxContainer/LeftPanel/TopRow"]
-offset_top = 53.0
-offset_right = 770.0
-offset_bottom = 78.0
-theme = SubResource( 4 )
-theme_override_colors/font_color = Color( 0, 0, 0, 1 )
+layout_mode = 2
+theme = SubResource("4")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Supernova-HS 2023"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/LeftPanel"]
-offset_top = 102.0
-offset_right = 770.0
-offset_bottom = 960.0
-custom_minimum_size = Vector2( 770, 858 )
-mouse_filter = 1
-scroll_horizontal_enabled = false
+custom_minimum_size = Vector2(770, 858)
+layout_mode = 2
 
 [node name="MarginContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftPanel/ScrollContainer"]
-offset_right = 760.0
-offset_bottom = 350.0
+layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="ESPStatus" parent="MarginContainer/HBoxContainer/LeftPanel/ScrollContainer/MarginContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 760.0
-offset_bottom = 326.0
-custom_minimum_size = Vector2( 760, 326 )
+[node name="ESPStatus" parent="MarginContainer/HBoxContainer/LeftPanel/ScrollContainer/MarginContainer" instance=ExtResource("3")]
+custom_minimum_size = Vector2(760, 326)
+layout_mode = 2
 
-[node name="CarStatus" parent="MarginContainer/HBoxContainer/LeftPanel/ScrollContainer/MarginContainer" instance=ExtResource( 4 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 350.0
-offset_right = 760.0
-offset_bottom = 350.0
+[node name="CarStatus" parent="MarginContainer/HBoxContainer/LeftPanel/ScrollContainer/MarginContainer" instance=ExtResource("4")]
+layout_mode = 2
 
 [node name="RightPanel" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-offset_left = 794.0
-offset_right = 1812.0
-offset_bottom = 960.0
+layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/RightPanel"]
-offset_right = 1018.0
-offset_bottom = 960.0
-custom_minimum_size = Vector2( 1006, 960 )
-mouse_filter = 1
-scroll_horizontal_enabled = false
+custom_minimum_size = Vector2(1006, 960)
+layout_mode = 2
 
 [node name="MarginContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightPanel/ScrollContainer"]
-offset_right = 1006.0
-offset_bottom = 1616.0
+layout_mode = 2
 theme_override_constants/separation = 24
 
-[node name="BatteryVoltageGraph" parent="MarginContainer/HBoxContainer/RightPanel/ScrollContainer/MarginContainer" instance=ExtResource( 5 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 1006.0
-offset_bottom = 782.0
+[node name="BatteryVoltageGraph" parent="MarginContainer/HBoxContainer/RightPanel/ScrollContainer/MarginContainer" instance=ExtResource("5")]
+layout_mode = 2
 
-[node name="FuelCellGraph" parent="MarginContainer/HBoxContainer/RightPanel/ScrollContainer/MarginContainer" instance=ExtResource( 6 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_top = 806.0
-offset_right = 1006.0
-offset_bottom = 1616.0
+[node name="FuelCellGraph" parent="MarginContainer/HBoxContainer/RightPanel/ScrollContainer/MarginContainer" instance=ExtResource("6")]
+layout_mode = 2

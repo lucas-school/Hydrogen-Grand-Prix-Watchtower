@@ -31,13 +31,13 @@ func build_dataset(data : Array, headers : PackedStringArray, labels : PackedStr
 	return dataset
 
 func insert_column(column : Array, header : String = "", index : int = dataset[0].size() - 1) -> void:
-	assert(column.size() == (datamatrix.rows() if not datamatrix.is_empty() else labels.size()), "error: the column size must match the dataset column size")
+	assert(column.size() == (datamatrix.rows() if not datamatrix.is_empty() else labels.size())) #,"error: the column size must match the dataset column size")
 	headers.insert(index, header if header != "" else MatrixGenerator.get_letter_index(index))
 	datamatrix.insert_column(column, index)
 	dataset = build_dataset_from_matrix(datamatrix, headers, labels)
 
 func insert_row(row : Array, label : String = "", index : int = dataset.size() - 1) -> PackedStringArray:
-	assert(row.size() == (datamatrix.columns() if not datamatrix.is_empty() else headers.size()), "error: the row size must match the dataset row size")
+	assert(row.size() == (datamatrix.columns() if not datamatrix.is_empty() else headers.size())) #,"error: the row size must match the dataset row size")
 	labels.insert(index, label if label != "" else str(index))
 	datamatrix.insert_row(row, index)
 	dataset = build_dataset_from_matrix(datamatrix, headers, labels)
@@ -160,7 +160,7 @@ func get_irows(indexes : PackedInt32Array) -> Array:
 # dataset["0:5"] ---> Returns an array containing all columns from the 1st to the 4th
 # dataset["label0;label5"] ---> Returns an array containing all row from the one with label == "label0" to the one with label == "label5"
 # dataset["header0:header0"] ---> Returns an array containing all columns from the one with label == "label0" to the one with label == "label5"
-func _get(_property : String):
+func _get(_property : StringName):
 	# ":" --> Columns 
 	if ":" in _property:
 		var property : PackedStringArray = _property.split(":")
@@ -185,6 +185,6 @@ func _get(_property : String):
 		var property : PackedStringArray = _property.split(",")
 	else:
 		if (_property as String).is_valid_int():
-			return get_icolumn(_property as int)
+			return get_icolumn(int(_property))
 		else:
 			return get_column(_property)

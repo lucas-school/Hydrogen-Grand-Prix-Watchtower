@@ -2,7 +2,6 @@
 extends PanelContainer
 class_name DataTooltip
 
-var position : Vector2 = Vector2()
 var gap: float = 15
 
 @onready var x_lbl : Label = $PointData/x

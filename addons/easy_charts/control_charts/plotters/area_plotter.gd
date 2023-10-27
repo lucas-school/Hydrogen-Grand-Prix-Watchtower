@@ -15,9 +15,11 @@ func _draw_areas() -> void:
 			fp_augmented = _get_stair_points()
 		Function.Interpolation.SPLINE:
 			fp_augmented = _get_spline_points()
+		Function.Interpolation.NONE, _:
+			return
 	
-	fp_augmented.insert(0, Vector2(fp_augmented[0].x, box.end.y))
-	fp_augmented.push_back(Vector2(fp_augmented[-1].x, box.end.y))
+	fp_augmented.push_back(Vector2(fp_augmented[-1].x, box.end.y + 80))
+	fp_augmented.push_back(Vector2(fp_augmented[0].x, box.end.y + 80))
 	
 	var base_color: Color = function.get_color()
 	var colors: PackedColorArray = []
@@ -27,4 +29,5 @@ func _draw_areas() -> void:
 	draw_polygon(fp_augmented, colors)
 
 func _draw() -> void:
+	super._draw()
 	_draw_areas()

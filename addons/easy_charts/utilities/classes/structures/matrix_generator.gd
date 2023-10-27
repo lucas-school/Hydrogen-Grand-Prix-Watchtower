@@ -44,7 +44,7 @@ static func duplicate(_matrix : Matrix) -> Matrix:
 
 # Calculate the determinant of a matrix
 static func determinant(matrix: Matrix) -> float:
-	assert(matrix.is_square(), "Expected square matrix")
+	assert(matrix.is_square()) #,"Expected square matrix")
 	
 	var determinant: float = 0.0
 	
@@ -129,7 +129,7 @@ static func hadamard(_matrix1 : Matrix, _matrix2 : Matrix) -> Matrix:
 	for x in range(_matrix1.to_array().size()):
 		var row : Array = []
 		for y in range(_matrix1.to_array()[x].size()):
-			assert(typeof(_matrix1.to_array()[x][y]) != TYPE_STRING and typeof(_matrix2.to_array()[x][y]) != TYPE_STRING, "can't apply operations over a Matrix of Strings")
+			assert(typeof(_matrix1.to_array()[x][y]) != TYPE_STRING and typeof(_matrix2.to_array()[x][y]) != TYPE_STRING) #,"can't apply operations over a Matrix of Strings")
 			row.append(_matrix1.to_array()[x][y] * _matrix2.to_array()[x][y])
 		array.append(row)
 	return Matrix.new(array)

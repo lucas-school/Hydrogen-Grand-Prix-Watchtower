@@ -14,7 +14,7 @@ func _ready() -> void:
 func update_values(x_domain: Dictionary, y_domain: Dictionary) -> void:
 	self.x_domain = x_domain
 	self.y_domain = y_domain
-	update()
+	queue_redraw()
 
 func _draw() -> void:
 	pass

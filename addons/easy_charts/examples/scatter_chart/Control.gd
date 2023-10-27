@@ -34,11 +34,12 @@ func _ready():
 	
 	# Let's add values to our functions
 	f1 = Function.new(
-		x, y, "Pressure" # This will create a function with x and y values taken by the Arrays 
-						  # we have created previously. This function will also be named "Pressure"
-						  # as it contains 'pressure' values.
-						  # If set, the name of a function will be used both in the Legend
-						  # (if enabled thourgh ChartProperties) and on the Tooltip (if enabled).
+		x, y, "Pressure", # This will create a function with x and y values taken by the Arrays 
+						# we have created previously. This function will also be named "Pressure"
+						# as it contains 'pressure' values.
+						# If set, the name of a function will be used both in the Legend
+						# (if enabled thourgh ChartProperties) and on the Tooltip (if enabled).
+		{ color = Color.GREEN, marker = Function.Marker.CIRCLE }
 	)
 	f2 = Function.new(x, y2, "Humidity", { color = Color("#ff6384"), marker = Function.Marker.CROSS })
 	
@@ -58,7 +59,7 @@ func _process(delta: float):
 	# we can use the `Function.add_point(x, y)` method to update a function
 	f1.add_point(new_val, cos(new_val) * 20)
 	f2.add_point(new_val, (sin(new_val) * 20) + 20)
-	chart.update() # This will force the Chart to be updated
+	chart.queue_redraw() # This will force the Chart to be updated
 
 
 func _on_CheckButton_pressed():

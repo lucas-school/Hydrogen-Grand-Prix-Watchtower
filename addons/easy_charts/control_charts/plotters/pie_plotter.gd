@@ -20,6 +20,7 @@ func _init(function: Function) -> void:
 	pass
 
 func _draw() -> void:
+	super._draw()
 	box = get_box()
 	radius = min(box.size.x, box.size.y) * 0.5 * radius_multiplayer
 	var total: float = get_total()
@@ -91,19 +92,29 @@ func _draw_labels(radius: float, center: Vector2, ratios: PackedFloat32Array) ->
 			get_chart_properties().font,
 			position - Vector2(ratio_lbl_size.x / 2, 0),
 			ratio_lbl,
-			Color.WHITE
+			HORIZONTAL_ALIGNMENT_CENTER,
+			ratio_lbl_size.x,
+			16,
+			Color.WHITE,
+			3,
+			TextServer.DIRECTION_AUTO,
+			TextServer.ORIENTATION_HORIZONTAL
 		)
 		draw_string(
 			get_chart_properties().font,
 			position - Vector2(value_lbl_size.x / 2, - value_lbl_size.y),
 			value_lbl,
-			Color.WHITE
+			HORIZONTAL_ALIGNMENT_CENTER,
+			value_lbl_size.x,
+			16,
+			Color.WHITE,
+			3,TextServer.DIRECTION_AUTO,TextServer.ORIENTATION_HORIZONTAL
 		)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouse:
 		for i in slices.size():
-			if Geometry.is_point_in_polygon(get_relative_position(event.position), slices[i]):
+			if Geometry2D.is_point_in_polygon(get_relative_position(event.position), slices[i]):
 				var point: Point = Point.new(self.box.get_center() + slices_dirs[i] * self.radius * 0.5, { x = function.x[i], y = function.y[i] })
 				if focused_point == point:
 					return

@@ -10,7 +10,7 @@ static func _map_domain(value: float, from_domain: Dictionary, to_domain: Dictio
 	return remap(value, from_domain.lb, from_domain.ub, to_domain.lb, to_domain.ub) 
 
 static func _format_value(value: float, is_decimal: bool) -> String:
-	return ("%.2f" if is_decimal else "%s") % value 
+	return ("%.2f" if is_decimal else "%s") % snapped(value, 0.01) 
 
 ### Utility Inner functions ###
 
@@ -31,7 +31,7 @@ static func _has_decimals(values: Array) -> bool:
 			if val is String:
 				return false
 			if abs(fmod(val, 1)) > 0.0:
-					 return true
+				return true
 	
 	return false
 
@@ -45,7 +45,7 @@ static func _find_min_max(values: Array) -> Dictionary:
 	for dim in temp:
 		min_ts.append(dim.min())
 		max_ts.append(dim.max())
-	_min = min_ts[0]
+	_min = min_ts.min()
 	_max = max(0, max_ts.max())
 	
 	return { min = _min, max = _max }

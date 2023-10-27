@@ -1,40 +1,57 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=3 uid="uid://d1srlok04s77k"]
 
-[ext_resource path="res://fonts/Brink - BR Cobane Bold.otf" type="FontFile" id=1]
-[ext_resource path="res://fonts/Brink - BR Cobane Light3D.otf" type="FontFile" id=2]
-[ext_resource path="res://BatteryVoltageLineGraph.tscn" type="PackedScene" id=3]
-[ext_resource path="res://serialData.tscn" type="PackedScene" id=4]
-[ext_resource path="res://RPANEL-BatteryVoltage.gd" type="Script" id=5]
+[ext_resource type="FontFile" uid="uid://bt585iu7gwdji" path="res://fonts/Brink - BR Cobane Bold.otf" id="1"]
+[ext_resource type="PackedScene" path="res://BatteryVoltageLineGraph.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://serialData.tscn" id="4"]
+[ext_resource type="Script" path="res://RPANEL-BatteryVoltage.gd" id="5"]
 
-[sub_resource type="FontFile" id=9]
-size = 28
-font_data = ExtResource( 1 )
+[sub_resource type="FontFile" id="9"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+fallbacks = Array[Font]([ExtResource("1"), ExtResource("1")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="Theme" id=4]
-default_font = SubResource( 9 )
+[sub_resource type="Theme" id="4"]
+default_font = SubResource("9")
 
-[sub_resource type="FontFile" id=3]
-size = 24
-font_data = ExtResource( 2 )
+[sub_resource type="FontFile" id="3"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
-[sub_resource type="Theme" id=5]
-default_font = SubResource( 3 )
+[sub_resource type="Theme" id="5"]
+default_font = SubResource("3")
 
 [node name="Control" type="Control"]
+custom_minimum_size = Vector2(1006, 782)
+layout_mode = 3
 anchor_right = 0.524
 anchor_bottom = 0.724
 offset_right = -0.0800781
 offset_bottom = 0.0799561
-custom_minimum_size = Vector2( 1006, 782 )
-script = ExtResource( 5 )
+script = ExtResource("5")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_right = 1006.0
 offset_bottom = 782.0
-pivot_offset = Vector2( -660, 35 )
-color = Color( 0.94902, 0.94902, 0.94902, 1 )
+pivot_offset = Vector2(-660, 35)
+color = Color(0.94902, 0.94902, 0.94902, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 3.628
 offset_left = 60.0
@@ -43,50 +60,38 @@ offset_right = -60.0
 offset_bottom = -3196.24
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-offset_right = 886.0
-offset_bottom = 662.0
+layout_mode = 2
 theme_override_constants/separation = 24
 
 [node name="CarStatus" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-offset_right = 886.0
-offset_bottom = 662.0
+layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/CarStatus"]
-offset_right = 886.0
-offset_bottom = 600.0
+layout_mode = 2
 
-[node name="BatteryVoltageChart" parent="MarginContainer/VBoxContainer/CarStatus/MarginContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 886.0
-offset_bottom = 600.0
-custom_minimum_size = Vector2( 886, 600 )
+[node name="BatteryVoltageChart" parent="MarginContainer/VBoxContainer/CarStatus/MarginContainer" instance=ExtResource("3")]
+custom_minimum_size = Vector2(886, 600)
+layout_mode = 2
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/CarStatus"]
-offset_top = 604.0
-offset_right = 886.0
-offset_bottom = 633.0
-theme = SubResource( 4 )
-theme_override_colors/font_color = Color( 0, 0, 0, 1 )
+layout_mode = 2
+theme = SubResource("4")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 
 [node name="BatteryVoltageBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CarStatus"]
-offset_top = 637.0
-offset_right = 886.0
-offset_bottom = 662.0
+layout_mode = 2
 
 [node name="BatteryVoltage" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/BatteryVoltageBox"]
-offset_right = 254.0
-offset_bottom = 25.0
-theme = SubResource( 5 )
-theme_override_colors/font_color = Color( 0, 0, 0, 1 )
+layout_mode = 2
+theme = SubResource("5")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Recent Battery Voltage:"
 
 [node name="BatteryVoltageCurrent" type="Label" parent="MarginContainer/VBoxContainer/CarStatus/BatteryVoltageBox"]
-offset_left = 258.0
-offset_right = 318.0
-offset_bottom = 25.0
-theme = SubResource( 5 )
-theme_override_colors/font_color = Color( 0.105882, 0.117647, 0.760784, 1 )
+layout_mode = 2
+theme = SubResource("5")
+theme_override_colors/font_color = Color(0.105882, 0.117647, 0.760784, 1)
 text = "7.93V"
 
-[node name="serialData" parent="." instance=ExtResource( 4 )]
+[node name="serialData" parent="." instance=ExtResource("4")]
+anchors_preset = 0

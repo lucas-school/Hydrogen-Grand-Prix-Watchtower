@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://addons/easy_charts/utilities/containers/data_tooltip/data_tooltip.gd" type="Script" id=1]
-[ext_resource path="res://fonts/Brink - BR Cobane Light3D.otf" type="FontFile" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 10.0
@@ -16,13 +15,6 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 corner_detail = 20
 anti_aliasing_size = 0.65
-
-[sub_resource type="FontFile" id=6]
-size = 24
-font_data = ExtResource( 2 )
-
-[sub_resource type="Theme" id=4]
-default_font = SubResource( 6 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 corner_radius_top_left = 5
@@ -59,7 +51,6 @@ __meta__ = {
 offset_top = 2.0
 offset_bottom = 16.0
 size_flags_horizontal = 0
-theme = SubResource( 4 )
 theme_override_colors/font_color = Color( 1, 1, 1, 1 )
 valign = 1
 
@@ -93,7 +84,6 @@ offset_right = 16.0
 offset_bottom = 14.0
 size_flags_horizontal = 0
 size_flags_vertical = 5
-theme = SubResource( 4 )
 valign = 1
 
 [node name="sep" type="Label" parent="PointData/Value"]
@@ -102,7 +92,6 @@ offset_right = 21.0
 offset_bottom = 14.0
 size_flags_horizontal = 0
 size_flags_vertical = 5
-theme = SubResource( 4 )
 text = ":"
 valign = 1
 
@@ -119,7 +108,6 @@ offset_right = 27.0
 offset_bottom = 14.0
 size_flags_horizontal = 0
 size_flags_vertical = 5
-theme = SubResource( 4 )
 theme_override_colors/font_color = Color( 1, 1, 1, 1 )
 valign = 1
 

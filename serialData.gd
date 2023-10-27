@@ -42,9 +42,9 @@ func _ready():
 
 	#serial_data = get_tree().get_nodes_in_group("serial_data")[0]
 func load_file(file):
-
-	var f = File.new()
-	f.open(file, File.READ)
+	#var f = File.new()
+	#f.open(file, File.READ)
+	var f = FileAccess.open(file, FileAccess.READ)
 	var index = 1
 	var line
 	while not f.eof_reached(): # iterate through all lines until the end of file is reached

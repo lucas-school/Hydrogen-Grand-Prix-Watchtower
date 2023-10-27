@@ -3,12 +3,11 @@ class_name LinePlotter
 
 func _init(function: Function) -> void:
 	super(function)
-	pass
 
 func _get_spline_points(density: float = 10.0, tension: float = 1) -> PackedVector2Array:
 	var spline_points: PackedVector2Array = []
 	
-	var augmented: PackedVector2Array = self.points_positions
+	var augmented: PackedVector2Array = points_positions
 	var pi: Vector2 = augmented[0] - Vector2(10, -10)
 	var pf: Vector2 = augmented[augmented.size() - 1] + Vector2(10, 10)
 	
@@ -38,6 +37,13 @@ func _get_stair_points() -> PackedVector2Array:
 
 
 func _draw() -> void:
+	super._draw()
+	
+	#prevent error when drawing with no data.
+	if points_positions.size() < 2:
+		printerr("Cannot plot a line with less than two points!")
+		return
+	
 	match function.get_interpolation():
 		Function.Interpolation.LINEAR:
 			draw_polyline(
@@ -60,3 +66,5 @@ func _draw() -> void:
 				function.get_line_width(),
 				true
 			)
+		Function.Interpolation.NONE, _:
+			pass

@@ -3,18 +3,15 @@ extends Control
 @onready var chart: Chart = $VBoxContainer/Chart
 
 # This Chart will plot 3 different functions
-var f2: Function
-
+var f1: Function
 
 func _ready():
 	# Let's create our @x values
-	var x: Array = ArrayOperations.multiply_float(range(-10, 11, 1), 0.5)
+	var x: PackedFloat32Array = ArrayOperations.multiply_float(range(-10, 11, 1), 0.5)
 	
 	# And our y values. It can be an n-size array of arrays.
 	# NOTE: `x.size() == y.size()` or `x.size() == y[n].size()`
 	var y: Array = ArrayOperations.multiply_int(ArrayOperations.cos(x), 20)
-	var y2: Array = ArrayOperations.add_float(ArrayOperations.multiply_int(ArrayOperations.sin(x), 20), 20)
-	var y3: Array = ArrayOperations.add_float(ArrayOperations.multiply_int(ArrayOperations.cos(x), -5), -3)
 	
 	# Let's customize the chart properties, which specify how the chart
 	# should look, plus some additional elements like labels, the scale, etc...
@@ -36,26 +33,24 @@ func _ready():
 	# Let's add values to our functions
 	f1 = Function.new(
 		x, y, "Pressure", # This will create a function with x and y values taken by the Arrays 
-						  # we have created previously. This function will also be named "Pressure"
-						  # as it contains 'pressure' values.
-						  # If set, the name of a function will be used both in the Legend
-						  # (if enabled thourgh ChartProperties) and on the Tooltip (if enabled).
+						# we have created previously. This function will also be named "Pressure"
+						# as it contains 'pressure' values.
+						# If set, the name of a function will be used both in the Legend
+						# (if enabled thourgh ChartProperties) and on the Tooltip (if enabled).
 		# Let's also provide a dictionary of configuration parameters for this specific function.
 		{ 
 			color = Color("#36a2eb"), 		# The color associated to this function
-			marker = Function.Marker.NONE, 	# The marker that will be displayed for each drawn point (x,y)
+			marker = Function.Marker.CIRCLE, 	# The marker that will be displayed for each drawn point (x,y)
 											# since it is `NONE`, no marker will be shown.
 			type = Function.Type.LINE, 		# This defines what kind of plotting will be used, 
-											# in this case it will be an Area Chart.
+											# in this case it will be a Linear Chart.
 			interpolation = Function.Interpolation.STAIR	# Interpolation mode, only used for 
 															# Line Charts and Area Charts.
 		}
 	)
-	f2 = Function.new(x, y2, "Humidity", { color = Color("#ff6384"), type = Function.Type.LINE, marker = Function.Marker.CROSS, interpolation = Function.Interpolation.SPLINE })
-	f3 = Function.new(x, y3, "CO2", { color = Color.GREEN, type = Function.Type.LINE, marker = Function.Marker.TRIANGLE, interpolation = Function.Interpolation.LINEAR })
 	
 	# Now let's plot our data
-	chart.plot([f1, f2, f3], cp)
+	chart.plot([f1], cp)
 	
 	# Uncommenting this line will show how real time data plotting works
 	set_process(false)
@@ -69,9 +64,8 @@ func _process(delta: float):
 	
 	# we can use the `Function.add_point(x, y)` method to update a function
 	f1.add_point(new_val, cos(new_val) * 20)
-	f2.add_point(new_val, (sin(new_val) * 20) + 20)
-	f3.add_point(new_val, (cos(new_val) * -5) - 3)
-	chart.update() # This will force the Chart to be updated
+	f1.remove_point(0)
+	chart.queue_redraw() # This will force the Chart to be updated
 
 
 func _on_CheckButton_pressed():
