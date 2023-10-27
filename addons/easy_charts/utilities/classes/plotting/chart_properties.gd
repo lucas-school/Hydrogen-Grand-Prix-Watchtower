@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 class_name ChartProperties
 
 var title: String
@@ -35,18 +35,18 @@ var show_legend: bool = false
 var interactive: bool = false
 
 var colors: Dictionary = {
-	frame = Color.whitesmoke,
-	background = Color.white,
-	borders = Color.red,
-	bounding_box = Color.black,
-	grid = Color.gray,
-	ticks = Color.black,
-	text = Color.black,
-	origin = Color.dimgray
+	frame = Color.WHITE_SMOKE,
+	background = Color.WHITE,
+	borders = Color.RED,
+	bounding_box = Color.BLACK,
+	grid = Color.GRAY,
+	ticks = Color.BLACK,
+	text = Color.BLACK,
+	origin = Color.DIM_GRAY
 }
 
-var font_data: DynamicFontData = load("res://addons/easy_charts/utilities/assets/OpenSans-VariableFont_wdth,wght.ttf")
-var font: DynamicFont = DynamicFont.new()
+var font_data: FontFile = load("res://addons/easy_charts/utilities/assets/OpenSans-VariableFont_wdth,wght.ttf")
+var font: FontFile = FontFile.new()
 
 func _init() -> void:
 	font.set_font_data(font_data)

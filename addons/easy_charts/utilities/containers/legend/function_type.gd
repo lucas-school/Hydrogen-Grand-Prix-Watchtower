@@ -48,7 +48,7 @@ func _draw() -> void:
 			)
 		Function.Marker.TRIANGLE:
 			draw_colored_polygon(
-				PoolVector2Array([
+				PackedVector2Array([
 					center + (Vector2.UP * 3 * 1.3),
 					center + (Vector2.ONE * 3 * 1.3),
 					center - (Vector2(1, -1) * 3 * 1.3)

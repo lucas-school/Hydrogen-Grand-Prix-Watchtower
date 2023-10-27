@@ -33,7 +33,7 @@ var time_between_data = 5
 
 var graphs
 
-onready var serial_data_file = 'res://python/temp/temp'
+@onready var serial_data_file = 'res://python/temp/temp'
 
 
 # Called when the node enters the scene tree for the first time.
@@ -60,7 +60,7 @@ func load_file(file):
 func _process(delta):
 	# store start time
 	if started == false and connected:
-		time_started = OS.get_unix_time()
+		time_started = Time.get_unix_time_from_system()
 		started = true
 	
 	# get connection status and time_since
@@ -76,7 +76,7 @@ func _process(delta):
 		else:
 			green_led_flashing = false
 		
-		time_since = OS.get_unix_time() - int(time_last)
+		time_since = Time.get_unix_time_from_system() - int(time_last)
 		
 		#calculate if still connected
 		if time_since > 5:
@@ -85,8 +85,8 @@ func _process(delta):
 			connected = true
 			
 		# calculate time since first connected
-		time_since_start = OS.get_unix_time() - time_started
-		if time_since_start == OS.get_unix_time():
+		time_since_start = Time.get_unix_time_from_system() - time_started
+		if time_since_start == Time.get_unix_time_from_system():
 			time_since_start = 0
 		
 		solenoid_time_calc = solenoid_time - solenoid_time_difference #factor in difference. Difference calculated when hydrogen is reset

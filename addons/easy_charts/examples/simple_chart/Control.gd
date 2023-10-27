@@ -1,6 +1,6 @@
 extends Control
 
-onready var chart: Chart = $VBoxContainer/Chart
+@onready var chart: Chart = $VBoxContainer/Chart
 
 # This Chart will plot 1 function
 var f1: Function

@@ -1,4 +1,4 @@
-tool
+@tool
 extends Resource
 class_name Matrix
 
@@ -162,13 +162,13 @@ func set(position: String, value) -> void:
 func _get(_property : String):
 	# ":" --> Columns 
 	if ":" in _property:
-		var property : PoolStringArray = _property.split(":") 
-		var from : PoolStringArray = property[0].split(",")
-		var to : PoolStringArray = property[1].split(",")
+		var property : PackedStringArray = _property.split(":") 
+		var from : PackedStringArray = property[0].split(",")
+		var to : PackedStringArray = property[1].split(",")
 	elif "," in _property:
-		var property : PoolStringArray = _property.split(",")
+		var property : PackedStringArray = _property.split(",")
 		if property.size() == 2:
 			return get_row(property[0] as int)[property[1] as int]
 	else:
-		if (_property as String).is_valid_integer():
+		if (_property as String).is_valid_int():
 			return get_row(_property as int)

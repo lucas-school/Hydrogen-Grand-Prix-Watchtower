@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 class_name Function
 
 enum Type {
@@ -32,7 +32,7 @@ func _init(x: Array, y: Array, name: String = "", props: Dictionary = {}) -> voi
 	self.x = x.duplicate()
 	self.y = y.duplicate()
 	self.name = name
-	if not props.empty() and props != null:
+	if not props.is_empty() and props != null:
 		self.props = props
 
 func add_point(x: float, y: float) -> void:

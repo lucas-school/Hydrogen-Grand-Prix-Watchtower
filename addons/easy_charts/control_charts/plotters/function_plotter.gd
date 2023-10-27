@@ -26,4 +26,4 @@ func get_chart_properties() -> ChartProperties:
 	return get_parent().get_parent().chart_properties
 
 func get_relative_position(position: Vector2) -> Vector2:
-	return position - rect_global_position
+	return position - global_position

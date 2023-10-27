@@ -1,7 +1,7 @@
 extends Control
 
-onready var chart: Chart = $VBoxContainer/Chart
-onready var serial_data = $serialData
+@onready var chart: Chart = $VBoxContainer/Chart
+@onready var serial_data = $serialData
 
 var min_points = 60
 
@@ -22,7 +22,7 @@ func _ready():
 	# should look, plus some additional elements like labels, the scale, etc...
 	var cp: ChartProperties = ChartProperties.new()
 	cp.colors.frame = Color("#fff")
-	cp.colors.background = Color.transparent
+	cp.colors.background = Color.TRANSPARENT
 	cp.colors.grid = Color("#c3c3c3")
 	cp.colors.ticks = Color("#f2f2f2")
 	cp.colors.text = Color("#000000")
