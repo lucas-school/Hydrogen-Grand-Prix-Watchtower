@@ -1,2 +1,9 @@
 res://default_env.tres
 res://main.tscn
+res://BatteryVoltageLineGraph.gd
+res://FuelCellGraph.gd
+res://LPANEL-CarStatus.gd
+res://LPANEL-EspStatus.gd
+res://RPANEL-BatteryVoltage.gd
+res://RPANEL-FuelCell.gd
+res://serialData.gd

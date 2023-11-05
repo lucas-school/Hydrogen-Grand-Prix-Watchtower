@@ -6,7 +6,7 @@ extends Control
 func _ready():
 	pass # Replace with function body.
 
-func _process(delta):
+func _process(_delta):
 	# hydrogen percent text
 	$MarginContainer/VBoxContainer/CarStatus/HBoxContainer/VBoxContainer/H2RemainingBox/H2RemainingAmount.text = str(serial_data.hydrogen_remaining_percent) + "%"
 	$MarginContainer/VBoxContainer/CarStatus/HBoxContainer/VBoxContainer/H2RemainingBox/H2RemainingAmount.add_theme_color_override("font_color",Color("1bc2b6")) #blue

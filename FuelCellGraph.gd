@@ -43,7 +43,7 @@ func _ready():
 
 var new_val: float = 4.5
 
-func _process(delta: float):
+func _process(_delta):
 	pass
 		
 

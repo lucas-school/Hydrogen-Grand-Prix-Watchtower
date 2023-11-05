@@ -7,7 +7,7 @@ extends Control
 func _ready():
 	pass # Replace with function body.
 
-func _process(delta):
+func _process(_delta):
 	if serial_data.battery_voltage > 1:
 		$MarginContainer/VBoxContainer/CarStatus/BatteryVoltageBox/BatteryVoltageCurrent.text = str(serial_data.battery_voltage)
 		$MarginContainer/VBoxContainer/CarStatus/BatteryVoltageBox/BatteryVoltageCurrent.add_theme_color_override("font_color",Color("1b1ec2")) #blue

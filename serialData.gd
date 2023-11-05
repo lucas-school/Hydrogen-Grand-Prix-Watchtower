@@ -57,7 +57,7 @@ func load_file(file):
 
 
 # warning-ignore:unused_argument
-func _process(delta):
+func _process(_delta):
 	# store start time
 	if started == false and connected:
 		time_started = Time.get_unix_time_from_system()

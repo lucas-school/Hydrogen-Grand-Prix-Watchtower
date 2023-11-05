@@ -5,7 +5,7 @@ extends Control
 func _ready():
 	pass
 	
-func _process(delta):
+func _process(_delta):
 	# car status and error codes
 	if serial_data.red_led == 0 and serial_data.green_led == 0 and serial_data.battery_voltage > 6:
 		$MarginContainer/VBoxContainer/CarStatus/OverallStatus/Status.text = "Battery Power"

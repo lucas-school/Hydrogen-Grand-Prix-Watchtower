@@ -45,7 +45,7 @@ func _ready():
 	chart.plot([voltage_graph], cp)
 
 
-func _process(delta: float):
+func _process(_delta):
 	pass
 
 func push_value_update():
