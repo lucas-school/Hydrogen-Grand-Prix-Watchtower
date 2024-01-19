@@ -92,7 +92,7 @@ func _process(_delta):
 		solenoid_time_calc = solenoid_time - solenoid_time_difference #factor in difference. Difference calculated when hydrogen is reset
 		hydrogen_remaining_percent = round((hydrogen_max - solenoid_time_calc) / hydrogen_max * 100)
 
-# check temp file for serial data and update variables
+# check temp file for serial data and update variables every .5 secs
 func _on_checkSerialTimer_timeout():
 	# on timer timeout,load from temp file
 	var serial_raw = load_file(serial_data_file)

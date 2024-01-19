@@ -1,6 +1,7 @@
 res://default_env.tres
 res://main.tscn
 res://serialData.tscn
-res://serialData.gd
 res://FuelCellGraph.tscn
 res://BatteryVoltageLineGraph.tscn
+res://BatteryVoltageLineGraph.gd
+res://serialData.gd
